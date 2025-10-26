@@ -2,6 +2,9 @@
 import mysql.connector
 import traceback
 import pandas as pd
+from django.contrib.admin.templatetags.admin_list import results
+
+
 class Connector:
     def __init__(self,server="localhost", port=3306, database="k23e_retail", username="ngot", password="Obama@123"):
         self.server=server
@@ -16,7 +19,8 @@ class Connector:
                 port=self.port,
                 database=self.database,
                 user=self.username,
-                password=self.password)
+                password=self.password,
+                use_pure=True)
             return self.conn
         except:
             self.conn=None
@@ -52,3 +56,16 @@ class Connector:
         one_item = cursor.fetchone()
         cursor.close()
         return one_item
+    def fetchall(self,sql,val):
+        cursor = self.conn.cursor()
+        cursor.execute(sql, val)
+        items= cursor.fetchall()
+        cursor.close()
+        return items
+    def savedata(self,sql,val):
+        cursor=self.conn.cursor()
+        cursor.execute(sql,val)
+        self.conn.commit()
+        result=cursor.rowcount
+        cursor.close()
+        return result
