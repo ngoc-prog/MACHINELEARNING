@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1500</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>House Pricing Prediction - Faculty of Information Systems</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #f0f0f0;
+}
+* {
+    font-size: 8pt;
+}
+QPushButton {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QWidget" name="headerWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #FFD700; padding: 5px;</string>
+      </property>
+      <layout class="QHBoxLayout" name="headerLayout">
+       <item>
+        <widget class="QLabel" name="titleLabel">
+         <property name="font">
+          <font>
+           <family>Tahoma</family>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>House Pricing Prediction</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="datasetWidget" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: #FFA500; padding: 10px;</string>
+      </property>
+      <layout class="QHBoxLayout" name="datasetLayout">
+       <item>
+        <widget class="QLabel" name="lblDataset">
+         <property name="text">
+          <string>Select Dataset:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_dataset">
+         <property name="minimumSize">
+          <size>
+           <width>400</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>USA_Housing.csv</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_pick_dataset">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    padding: 8px 15px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #1976D2;
+}</string>
+         </property>
+         <property name="text">
+          <string>1.Pick Dataset</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_view_dataset">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    padding: 8px 15px;
+    background-color: #9C27B0;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #7B1FA2;
+}</string>
+         </property>
+         <property name="text">
+          <string>2.View Dataset</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="trainingWidget" native="true">
+      <layout class="QHBoxLayout" name="trainingLayout">
+       <item>
+        <widget class="QLabel" name="lblTrainingRate">
+         <property name="text">
+          <string>Training Rate:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spin_training_rate">
+         <property name="minimumSize">
+          <size>
+           <width>70</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>70</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="suffix">
+          <string> %</string>
+         </property>
+         <property name="minimum">
+          <number>10</number>
+         </property>
+         <property name="maximum">
+          <number>99</number>
+         </property>
+         <property name="value">
+          <number>80</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_train">
+         <property name="text">
+          <string>3.Train Model</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_evaluate">
+         <property name="text">
+          <string>4.Evaluate Model</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_status">
+         <property name="styleSheet">
+          <string notr="true">color: green; font-weight: bold;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTableWidget" name="table_evaluation">
+       <property name="columnCount">
+        <number>7</number>
+       </property>
+       <column>
+        <property name="text">
+         <string>Income</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Age</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Rooms</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Bedrooms</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Population</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Original Price</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Prediction</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QWidget" name="rightWidget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>480</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #FFB6C1; padding: 8px;</string>
+       </property>
+       <layout class="QVBoxLayout" name="rightLayout">
+        <item>
+         <widget class="QLabel" name="lblCoefficient">
+          <property name="styleSheet">
+           <string notr="true">font-weight: bold;</string>
+          </property>
+          <property name="text">
+           <string>Coefficient:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="txt_coefficient">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+            <pointsize>8</pointsize>
+           </font>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblMAE">
+          <property name="styleSheet">
+           <string notr="true">font-weight: bold; margin-top: 5px;</string>
+          </property>
+          <property name="text">
+           <string>Mean Absolute Error (MAE):</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txt_mae">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: white; padding: 3px;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblMSE">
+          <property name="styleSheet">
+           <string notr="true">font-weight: bold; margin-top: 3px;</string>
+          </property>
+          <property name="text">
+           <string>Mean Square Error (MSE):</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txt_mse">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: white; padding: 3px;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblRMSE">
+          <property name="styleSheet">
+           <string notr="true">font-weight: bold; margin-top: 3px;</string>
+          </property>
+          <property name="text">
+           <string>Root Mean Square Error (RMSE):</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txt_rmse">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: white; padding: 3px;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_save_model">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    padding: 10px;
+    background-color: #FF5722;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+QPushButton:hover {
+    background-color: #E64A19;
+}</string>
+          </property>
+          <property name="text">
+           <string>5. Save Model</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="loadModelWidget" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: #ADD8E6; padding: 10px;</string>
+      </property>
+      <layout class="QHBoxLayout" name="loadModelLayout">
+       <item>
+        <widget class="QLabel" name="lblLoadModel">
+         <property name="styleSheet">
+          <string notr="true">font-weight: bold;</string>
+         </property>
+         <property name="text">
+          <string>6. Load Model:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="combo_models">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_load">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #45a049;
+}</string>
+         </property>
+         <property name="text">
+          <string>Load</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_refresh">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    padding: 8px 20px;
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #F57C00;
+}</string>
+         </property>
+         <property name="text">
+          <string>Refresh List</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="predictionWidget" native="true">
+      <layout class="QVBoxLayout" name="predictionMainLayout">
+       <item>
+        <layout class="QHBoxLayout" name="incomeLayout">
+         <item>
+          <widget class="QLabel" name="lblAreaIncome">
+           <property name="text">
+            <string>Avg. Area Income:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_area_income"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="ageLayout">
+         <item>
+          <widget class="QLabel" name="lblHouseAge">
+           <property name="text">
+            <string>Avg. Area House Age:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_house_age"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="roomsLayout">
+         <item>
+          <widget class="QLabel" name="lblRooms">
+           <property name="text">
+            <string>Avg. Area Number of Rooms:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_rooms"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="bedroomsLayout">
+         <item>
+          <widget class="QLabel" name="lblBedrooms">
+           <property name="text">
+            <string>Avg. Area Number of Bedrooms:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_bedrooms"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="populationLayout">
+         <item>
+          <widget class="QLabel" name="lblPopulation">
+           <property name="text">
+            <string>Area Population:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_population"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_predict">
+         <property name="text">
+          <string>7. Prediction House Pricing</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="resultLayout">
+         <item>
+          <widget class="QLabel" name="lblPredictionResult">
+           <property name="text">
+            <string>Prediction Price:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_prediction_result">
+           <property name="styleSheet">
+            <string notr="true">background-color: #FFFFE0; font-size: 14px; font-weight: bold;</string>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="footerWidget" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #00FFFF; padding: 2px;</string>
+      </property>
+      <layout class="QHBoxLayout" name="footerLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblFooter">
+         <property name="text">
+          <string>Designed by: Nguyen Vo Nhu Ngoc</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
